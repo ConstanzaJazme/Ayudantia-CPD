@@ -6,8 +6,6 @@
  * Fecha: 28 de abril del 2019
  */
 #include<iostream>
-#include<stdlib.h>
-#include<cstdlib>
 #include<math.h>
 
 using namespace std;
