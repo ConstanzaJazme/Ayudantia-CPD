@@ -31,6 +31,14 @@ int* create_sub_vec(int begin, int end, int* origin){
     return  sub_vec;
 }
 
+/*Función para obtener la varianza*/
+
+float get_var(int size, int* sub_vec){
+  float var=0.0;
+  
+  return var
+}
+
 /**Función para obtener el promedio de un subvector**/
 
 float get_sub_prom(int begin, int end, int* sub_vec){ /* Se ingresa a la función: el inicio del sub_vec, el fin, el sub_vec y el vector con datos*/
