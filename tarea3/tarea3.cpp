@@ -40,6 +40,7 @@ int* create_sub_vec(int begin, int end, int* origin){
     return  sub_vec;
 }
 
+
 /**Función para obtener el promedio de un subvector**/
 
 float obtener_sub_prom(int largo, int* sub_vec){ /* Se ingresa a la función: el inicio del sub_vec, el fin, el sub_vec y el vector con datos*/
