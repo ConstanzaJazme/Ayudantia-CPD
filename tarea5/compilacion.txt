@@ -1,0 +1,18 @@
+Instalacion: (Teniendo CMake instalado) 
+$ git clone https://github.com/tfussell/xlnt.git
+$ cd xlnt
+$ cmake .
+$ make -j 2
+$ sudo make install
+$ sudo ldconfig
+
+Compilar con:
+$ g++ main.cpp -o tarea -std=c++14 -Ixlnt/include -lxln
+
+Ejecutar con:
+$./tarea
+
+Error de .so:
+Agregar "/usr/local/lib" al final de /etc/ld.so.conf
+$ sudo ldconfig
+$ ldconfig -p | grep local  //Para chequear
