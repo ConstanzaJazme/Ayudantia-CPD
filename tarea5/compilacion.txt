@@ -1,4 +1,4 @@
-Instalacion: (Teniendo CMake instalado) 
+Instalacion: (Teniendo CMake instalado)
 $ git clone https://github.com/tfussell/xlnt.git
 $ cd xlnt
 $ cmake .
@@ -7,7 +7,7 @@ $ sudo make install
 $ sudo ldconfig
 
 Compilar con:
-$ g++ main.cpp -o tarea -std=c++14 -Ixlnt/include -lxln
+$ g++ main.cpp -o tarea -std=c++14 -Ixlnt/include -lxlnt
 
 Ejecutar con:
 $./tarea

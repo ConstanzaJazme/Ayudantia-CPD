@@ -1,14 +1,19 @@
+#include <iostream>
 #include <xlnt/xlnt.hpp>
 
 int main()
 {
     xlnt::workbook wb;
-    xlnt::worksheet ws = wb.active_sheet();
-    ws.cell("A1").value(5);
-    ws.cell("B2").value("string data");
-    ws.cell("C3").formula("=RAND()");
-    ws.merge_cells("C3:C4");
-    ws.freeze_panes("B2");
-    wb.save("example.xlsx");
+    wb.load("Cursos.xlsx");
+    auto ws = wb.active_sheet();
+    std::clog << "Processing spread sheet" << std::endl;
+    for (auto row : ws.rows(false))
+    {
+        for (auto cell : row)
+    {
+        std::clog << cell.to_string() << std::endl;
+    }
+    }
+    std::clog << "Processing complete" << std::endl;
     return 0;
 }
