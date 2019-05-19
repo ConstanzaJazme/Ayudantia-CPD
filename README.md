@@ -7,23 +7,23 @@ Instalación:
     $ sudo apt-get install cmake
   
   2. Instalar Libreria.
-    $ git clone https://github.com/tfussell/xlnt.git
-    $ cd xlnt
-    $ cmake .
-    $ make -j 2
-    $ sudo make install
-    $ sudo ldconfig
+    1. $ git clone https://github.com/tfussell/xlnt.git
+    2. $ cd xlnt
+    3. $ cmake .
+    4. $ make -j 2
+    5. $ sudo make install
+    6. $ sudo ldconfig
   
   3. Compilar con:
-    $ g++ main.cpp -o tarea -std=c++14 -xlnt/include -lxlnt
+    7. $ g++ main.cpp -o tarea -std=c++14 -xlnt/include -lxlnt
     
   4. Ejecutar con:
-    $ ./tarea
+    8. $ ./tarea
 
 Error de .so:
-  Agregar "/usr/local/lib" al final de /etc/ld.so.conf
-    $ sudo ldconfig
-    $ ldconfig -p | grep local
+  1. Agregar "/usr/local/lib" al final de /etc/ld.so.conf
+    1. $ sudo ldconfig
+    2. $ ldconfig -p | grep local
     
     
     
