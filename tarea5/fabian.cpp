@@ -120,11 +120,23 @@ void cantidadAsignaturasPorProfesor(int argc, char *argv[]){
 
 }
 
+/* Funcion que permite validar el ingreso correcto de los argumentos */
+void validarArgumentos(int argc, char *argv[]){
+    if (argc-1 != 3){
+        cout << endl << "Argumentos Invalidos" << endl;
+    }
+    else{
+        cout << endl << "Argumentos Validos" << endl;
+        cantidadFilasPorArchivo(argc, argv);
+        cantidadAsignaturasPorProfesor(argc, argv);
+    }
+}
+
 
 int main(int argc, char *argv[])
 {
-    cantidadFilasPorArchivo(argc, argv);
-    cantidadAsignaturasPorProfesor(argc, argv);
+    
+    validarArgumentos(argc,argv); 
 
     return 0;
 }
