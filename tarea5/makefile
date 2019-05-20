@@ -4,7 +4,8 @@ CXX = g++
 CXXFLAGS = -std=c++14
 
 FUENTE = fabian.cpp
-NOMBRE = tarea
+CABECERA = funciones.cpp
+NOMBRE = tarea5
 XLSX = Cursos.xlsx Docentes.xlsx Salas.xlsx
 
 LIB = -Ixlnt/include -lxlnt
@@ -14,7 +15,7 @@ LIB = -Ixlnt/include -lxlnt
 
 
 tarea: fabian.cpp
-	$(CXX) $(FUENTE) -o $(NOMBRE) $(CXXFLAGS) $(LIB)
+	$(CXX) $(FUENTE) $(CABECERA) -o $(NOMBRE) $(CXXFLAGS) $(LIB)
 	clear
 	./$(NOMBRE) $(XLSX)
 
@@ -22,5 +23,7 @@ ejecutar:
 	clear
 	./$(NOMBRE) $(XLSX)
 
-clear:
-	rm $(NOMBRE)
+clean:
+	rm -fr *.o a.out $(NOMBRE)
+
+
