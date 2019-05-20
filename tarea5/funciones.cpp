@@ -1,28 +1,56 @@
 #include "funciones.h"
 
+/*Funcion que valida si los argumento ingresados  se encuentran*/
+bool argumento_correcto(int indice , char *argv[]){
+  try{ //Se intentará cargar un archivo
+    workbook probando; //instancia de objeto que aloja el xlsx
+    probando.load(argv[indice]); //carga del xlsx en instancia de prueba
+  }
+  catch (xlnt::exception) //SI NO SE PUEDE ABRIR EL ARCHIVO
+  {
+     return false;
+   }
+   return true;
+}
 
 //Cuenta la cantidad de filas que hay los archivos mandados por argumento.
-void cantidadFilasPorArchivo(int argc, char *argv[]){
+int cantidadFilasPorArchivo(int argc, char *argv[]){
+    int condicional=0; //Variable que determina cuantos archivos pueden ser abiertos
     if(argc > 1){ //Verifica la cantidad de argumentos a momento de ejecutar
       cout << "Cantidad de archivos ingresados: " << argc-1 << endl << endl;
       //iteracion desde el el 2° objeto (1° es nombre del .cpp)
       for(int archivos = 1; archivos < argc; archivos++){
         cout << "Nombre archivo: " << argv[archivos] << endl;
 
-        workbook xlsCursos; //instancia de objeto que aloja el xlsx
-        xlsCursos.load(argv[archivos]); //carga del xlsx
-        auto sheetCursos = xlsCursos.active_sheet(); //trabajando con la 1° pestaña del archivo
+        if (argumento_correcto(archivos, argv)) {
+          workbook xlsCursos; //instancia de objeto que aloja el xlsx
+          xlsCursos.load(argv[archivos]); //carga del xlsx
+          auto sheetCursos = xlsCursos.active_sheet(); //trabajando con la 1° pestaña del archivo
 
-        int contadorFilas = 0;
-        for (auto row : sheetCursos.rows(false)) //seudoForEach que recorrelas filas.
-        {
-          contadorFilas++;
+          int contadorFilas = 0;
+          for (auto row : sheetCursos.rows(false)) //seudoForEach que recorrelas filas.
+          {
+            contadorFilas++;
+          }
+
+          cout << "Cantidad de filas: " << contadorFilas << endl << endl;
+
+          condicional++;
+        }
+        else{
+          cout << "Lo sentimos, el archivo " <<argv[archivos] <<" no puede ser abierto."<< endl << endl;
         }
 
-        cout << "Cantidad de filas: " << contadorFilas << endl << endl;
       }
     } else {
       cout << "No se ingresaron archivos .xlsx" << endl;
+      return condicional;
+    }
+
+    if (condicional==3) { //Si todos los archivos pueden ser abiertos, entonces el programa funcionará correctamente
+      return 1;
+    }else{
+      return 0;   //Si algún archivo no puede ser abierto, el programa no seguirá ejecutandose.
     }
 }
 
@@ -58,6 +86,7 @@ void imprimeProfesores(vector<vector<string>> profes){
 
 //Cuenta la cantidad de asignarutas de cada profesor y las muestra por pantalla
 void cantidadAsignaturasPorProfesor(int argc, char *argv[]){
+    std::cout << "Calculando cantidad de ASIGNATURAS POR PROFESOR" << endl<<endl;
     workbook xlsCursos; //instancia de objeto que aloja el xlsx
     xlsCursos.load(argv[1]); //carga del xlsx
     auto sheetCursos = xlsCursos.active_sheet(); //seleccionar 1° pestaña
@@ -115,14 +144,22 @@ void cantidadAsignaturasPorProfesor(int argc, char *argv[]){
 
 }
 
+
 /* Funcion que permite validar el ingreso correcto de los argumentos */
 void validarArgumentos(int argc, char *argv[]){
-    if (argc-1 != 3){
-        cout << endl << "Argumentos Invalidos" << endl;
-    }
-    else{
-        cout << endl << "Argumentos Validos" << endl;
-        cantidadFilasPorArchivo(argc, argv);
+  int continuar=0; //Variable que determinará si es seguro continuar con la ejecución.
+
+  if (argc-1 != 3){
+      cout << endl << "Argumentos Invalidos" << endl;
+  }
+  else{
+      cout << endl << "Argumentos Validos" << endl;
+      continuar=cantidadFilasPorArchivo(argc, argv);
+      if (continuar==1) {
         cantidadAsignaturasPorProfesor(argc, argv);
+      }
+      else{
+        cout<<"Se reportan problemas con algunos archivos, favor verificar si fueron bien ingresados o si existen." <<endl;
+      }
     }
 }

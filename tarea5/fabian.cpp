@@ -9,7 +9,7 @@ using namespace xlnt;
 
 int main(int argc, char *argv[])
 {
-    validarArgumentos(argc,argv);
+    validarArgumentos(argc,argv);   //Función obtenida de funciones.h
 
     return 0;
 }
