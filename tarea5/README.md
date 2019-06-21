@@ -28,7 +28,7 @@ $ make
 - Si 'Make' no funciona, compilar y ejecutar con:
 ```
 $ g++ fabian.cpp funciones.cpp -o tarea5 -std=c++14 -xlnt/include -lxlnt
-$ ./tarea5 Cursos.xlsx Docentes.xlsx Salas.xlsx
+$ ./tarea5 -c Cursos.xlsx -d Docentes.xlsx -s Salas.xlsx
 ```
 - Errores con archivo .so:
 
